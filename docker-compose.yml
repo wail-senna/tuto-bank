@@ -1,0 +1,68 @@
+services:
+  tuto-bank-registery-service:
+    build: ./registery-service
+    container_name: tuto-bank-registery-service
+    ports:
+      - '8761:8761'
+    expose:
+      - '8761'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+  tuto-bank-config-service:
+    build: ./config-service
+    container_name: tuto-bank-config-service
+    ports:
+      - '9999-9999'
+    expose:
+      - '9999'
+    environment:
+      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9999/actuator/health" ]
+      interval: 10s
+    depends_on:
+      tuto-bank-registery-service:
+        condition: service_healthy
+  tuto-bank-customer-service:
+    build: ./customer-service
+    container_name: tuto-bank-customer-service
+    ports:
+      - '8081-8081'
+    expose:
+      - '8081'
+    environment:
+      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
+      interval: 10s
+    depends_on:
+      tuto-bank-config-service:
+        condition: service_healthy
+  tuto-bank-account-service:
+    build: ./account-service
+    container_name: tuto-bank-account-service
+    ports:
+      - '8082-8082'
+    expose:
+      - '8082'
+    environment:
+      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
+    depends_on:
+      tuto-bank-customer-service:
+        condition: service_healthy
+  tuto-bank-gateway-service:
+    build: ./gateway-service
+    container_name: tuto-bank-gateway-service
+    ports:
+      - '8888-8888'
+    expose:
+      - '8082'
+    environment:
+      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
+    depends_on:
+      tuto-bank-config-service:
+        condition: service_healthy
