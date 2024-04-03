@@ -59,7 +59,7 @@ services:
     ports:
       - '8888-8888'
     expose:
-      - '8082'
+      - '8888'
     environment:
       - REGISTRY_SERVICE_URL=http://tuto-bank-registry-service:8761/eureka
       - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
