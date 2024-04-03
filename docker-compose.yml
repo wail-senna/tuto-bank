@@ -1,7 +1,7 @@
 services:
-  tuto-bank-registery-service:
-    build: ./registery-service
-    container_name: tuto-bank-registery-service
+  tuto-bank-registry-service:
+    build: ./registry-service
+    container_name: tuto-bank-registry-service
     ports:
       - '8761:8761'
     expose:
@@ -17,7 +17,7 @@ services:
     expose:
       - '9999'
     environment:
-      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - REGISTRY_SERVICE_URL=http://tuto-bank-registry-service:8761/eureka
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9999/actuator/health" ]
       interval: 10s
@@ -32,7 +32,7 @@ services:
     expose:
       - '8081'
     environment:
-      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - REGISTRY_SERVICE_URL=http://tuto-bank-registry-service:8761/eureka
       - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8081/actuator/health" ]
@@ -48,7 +48,7 @@ services:
     expose:
       - '8082'
     environment:
-      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - REGISTRY_SERVICE_URL=http://tuto-bank-registry-service:8761/eureka
       - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
     depends_on:
       tuto-bank-customer-service:
@@ -61,7 +61,7 @@ services:
     expose:
       - '8082'
     environment:
-      - REGISTERY_SERVICE_URL=http://tuto-bank-registery-service:8761/eureka
+      - REGISTRY_SERVICE_URL=http://tuto-bank-registry-service:8761/eureka
       - CONFIG_SERVICE_URL=http://tuto-bank-config-service:9999
     depends_on:
       tuto-bank-config-service:

@@ -9,13 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>registery-service</artifactId>
+    <artifactId>registry-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>discovery-service</name>
-    <description>discovery-service</description>
+    <name>registry-service</name>
+    <description>registry-service</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>

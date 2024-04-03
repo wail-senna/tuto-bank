@@ -1,10 +1,10 @@
-package com.example.registeryservice;
+package com.example.registryservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RegisteryServiceApplicationTests {
+class RegistryServiceApplicationTests {
 
     @Test
     void contextLoads() {
