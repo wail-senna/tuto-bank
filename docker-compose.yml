@@ -22,7 +22,7 @@ services:
       test: [ "CMD", "curl", "-f", "http://localhost:9999/actuator/health" ]
       interval: 10s
     depends_on:
-      tuto-bank-registery-service:
+      tuto-bank-registry-service:
         condition: service_healthy
   tuto-bank-customer-service:
     build: ./customer-service
