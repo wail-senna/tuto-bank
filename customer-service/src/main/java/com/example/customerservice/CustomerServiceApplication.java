@@ -22,7 +22,7 @@ public class CustomerServiceApplication {
         return args -> {
             Customer customer=Customer.builder().nom("SENNA").prenom("Wail").email("wail@gmail.com").build();
             customerRepository.save(customer);
-            Customer customer2=Customer.builder().nom("BELGHITI").prenom("sALAH").email("salah@gmail.com").build();
+            Customer customer2=Customer.builder().nom("BELGHITI").prenom("Salah").email("salah@gmail.com").build();
             customerRepository.save(customer2);
         };
     }

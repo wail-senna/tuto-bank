@@ -20,15 +20,15 @@ public class AccountController {
         this.customerRestClient = customerRestClient;
     }
 
-    @GetMapping("accounts")
+    @GetMapping("/accounts")
     public List<Account> getAccounts(){
         return accountRepository.findAll();
     }
 
-    @GetMapping("account/{id}")
-    public Account getCustomerById(@PathVariable String id){
+    @GetMapping("/account/{id}")
+    public Account getAccountById(@PathVariable String id){
         Account account=accountRepository.findById(id).get();
-        Customer customer=customerRestClient.findCustomerById(account.getCustomerId());
+        Customer customer=customerRestClient.getCustomerById(account.getCustomerId());
         account.setCustomer(customer);
         return account;
     }

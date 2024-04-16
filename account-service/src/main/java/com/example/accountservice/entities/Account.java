@@ -8,10 +8,10 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
+@Table
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString @Builder
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String accountId;
     private double solde;
     private LocalDate createdAt;
